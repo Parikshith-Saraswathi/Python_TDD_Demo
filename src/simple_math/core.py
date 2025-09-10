@@ -1,4 +1,4 @@
-
+from pytest import approx
 """
 Core math utilities for TDD practice.
 
@@ -6,6 +6,7 @@ All functions use basic `float` types only.
 """
 
 from typing import List
+
 
 def add(a: float, b: float) -> float:
     """
@@ -17,7 +18,7 @@ def add(a: float, b: float) -> float:
         >>> add(-3.0, 1.0)
         -2.0
     """
-    raise NotImplementedError
+    return a+b
 
 
 def safe_divide(a: float, b: float) -> float:
@@ -32,7 +33,10 @@ def safe_divide(a: float, b: float) -> float:
             ...
         ValueError: denominator must not be zero
     """
-    raise NotImplementedError
+    if approx(b) == 0:
+        raise ValueError("denominator must not be zero")
+    return a/b
+
 
 def average(xs: List[float]) -> float:
     """
@@ -46,4 +50,6 @@ def average(xs: List[float]) -> float:
             ...
         ValueError: xs must not be empty
     """
-    raise NotImplementedError
+    if len(xs) == 0:
+        raise ValueError("xs must not be empty")
+    return sum(xs)/len(xs)
